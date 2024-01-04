@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="view"
+            type="com.github2136.basemvvm.IBaseView" />
+
+        <variable
+            name="vm"
+            type="com.github2136.basemvvm.BaseVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/ibLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{(v)->view.leftBtnClick(v)}"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{vm.titleTextLD}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            tools:text="标题" />
+
+        <Button
+            android:id="@+id/btnRight"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{(v)->view.rightBtnClick(v)}"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+            android:text="@{vm.rightBtnLD}"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:visibility="@{vm.rightBtnLD == null ? View.GONE : View.VISIBLE}"
+            tools:text="操作"
+            tools:visibility="visible" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.github2136.ledger.view.activity.record.record_list.RecordListActivity" />
+
+        <variable
+            name="vm"
+            type="com.github2136.ledger.view.activity.record.record_list.RecordListVM" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/title"
+                layout="@layout/view_title"
+                app:view="@{view}"
+                app:vm="@{vm}" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srlList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:Refreshing="@{vm.adapter.refreshing}"
+                app:onRefreshListener="@{view::onRefreshListener}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:adapter="@{vm.adapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:onClick="@{view::onClick}"
+            android:src="@drawable/ic_add"
+            app:elevation="4dp"
+            app:layout_anchor="@+id/srlList"
+            app:layout_anchorGravity="right|bottom"
+            app:layout_behavior=".common.view.FloatingActionButtonBehavior"
+            app:tint="@android:color/white" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

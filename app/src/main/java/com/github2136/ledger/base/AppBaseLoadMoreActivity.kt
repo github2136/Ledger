@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.github2136.basemvvm.loadmore.BaseLoadMoreActivity
 import com.github2136.basemvvm.loadmore.BaseLoadMoreVM
-import com.umeng.message.PushAgent
 
 /**
  * Created by 44569 on 2023/7/24
@@ -12,6 +11,5 @@ import com.umeng.message.PushAgent
 abstract class AppBaseLoadMoreActivity<V : BaseLoadMoreVM<*>, B : ViewDataBinding> : BaseLoadMoreActivity<V, B>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PushAgent.getInstance(activity).onAppStart()
     }
 }

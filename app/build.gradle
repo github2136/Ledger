@@ -24,6 +24,10 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        buildConfigField("String", "SERVICE_URL", "\"http://114.55.146.77:8024/\"")
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildFeatures {
         dataBinding = true
@@ -104,7 +108,6 @@ dependencies {
     }
     //图片加载
     implementation lib["glide"]
-    implementation lib["glide-okhttp"]
     kapt lib["glide-compiler"]
     //日历
     implementation lib["calendar-view"]
@@ -112,7 +115,6 @@ dependencies {
     implementation lib["MPAndroidChart"]
     implementation lib["dialogPicker"]
     implementation lib["Permissionx"]
-    implementation lib["X5"]
 
     androidTestImplementation lib["android-test"]
     androidTestImplementation lib["android-test-ext"]
