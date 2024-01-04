@@ -1,0 +1,125 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+def version = rootProject.ext.android
+def lib = rootProject.ext.dependencies
+
+android {
+    namespace 'com.github2136.ledger'
+    compileSdk version.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.github2136.ledger"
+        minSdk version.minSdkVersion
+        targetSdk version.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            versionNameSuffix ".debug"
+//            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    android.applicationVariants.all { var ->
+        var.outputs.all { output ->
+            outputFileName = "Ledger-${var.buildType.name}-${var.versionName}-${var.versionCode}-${releaseTime()}.apk"
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        jniLibs {
+            //so文件压缩，安装后占用空间会变大
+            useLegacyPackaging true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    implementation lib["android-appcompat"]
+    implementation lib["android-recyclerview"]
+    implementation lib["android-material"]
+    implementation lib["android-swiperefreshlayout"]
+    implementation lib["core-ktx"]
+
+    implementation lib["android-lifecycle-ktx"]
+
+    implementation lib["android-constraintlayout"]
+    implementation lib["android-coordinatorlayout"]
+    implementation lib["android-cardview"]
+    implementation lib["android-flexbox"]
+    //协程
+    implementation lib["android-coroutines"]
+    //gson
+    implementation lib['gson']
+    //基类
+    implementation lib["base"]
+    //工具类
+    implementation lib["android-util"]
+    //logcat日志打印
+    implementation lib["logger"]
+
+    //workManager
+    implementation lib["android-work"]
+    implementation lib["android-work-ktx"]
+
+    //sqlite数据库
+    implementation lib["android-room"]
+    kapt lib["android-room-compiler"]
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation lib["android-room-ktx"]
+    // optional - Test helpers
+    testImplementation lib["android-room-test"]
+    //图片查看选择器
+    implementation lib["photoPicker"]
+    implementation(lib["photoView"]) {
+        exclude(group: 'com.android.support', module: 'support-compat')
+    }
+    //图片加载
+    implementation lib["glide"]
+    implementation lib["glide-okhttp"]
+    kapt lib["glide-compiler"]
+    //日历
+    implementation lib["calendar-view"]
+    //图表
+    implementation lib["MPAndroidChart"]
+    implementation lib["dialogPicker"]
+    implementation lib["Permissionx"]
+    implementation lib["X5"]
+
+    androidTestImplementation lib["android-test"]
+    androidTestImplementation lib["android-test-ext"]
+    testImplementation lib["junit"]
+    androidTestImplementation lib["espresso"]
+}
+
+static def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("GMT+08"))
+}
