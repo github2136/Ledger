@@ -7,8 +7,8 @@ ext {
     ]
     dependVersion = [
             retrofit2_version: "2.9.0",
-            room_version     : "2.4.2",
-            work_version     : "2.4.0",
+            room_version     : "2.5.2",
+            work_version     : "2.8.0",
             glide_version    : "4.14.2"
     ]
     dependencies = [
@@ -24,20 +24,20 @@ ext {
             "okhttp-retrofit"           : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit2_version}",
             "okhttp-gson"               : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit2_version}",
             //Android支持库
-            "android-appcompat"         : "androidx.appcompat:appcompat:1.3.1",
-            "android-recyclerview"      : "androidx.recyclerview:recyclerview:1.2.1",
+            "android-appcompat"         : "androidx.appcompat:appcompat:1.6.1",
+            "android-recyclerview"      : "androidx.recyclerview:recyclerview:1.3.2",
             "android-swiperefreshlayout": "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
-            "android-material"          : "com.google.android.material:material:1.4.0",
-            "android-constraintlayout"  : "androidx.constraintlayout:constraintlayout:1.1.3",
-            "android-coordinatorlayout" : "androidx.coordinatorlayout:coordinatorlayout:1.1.0",
+            "android-material"          : "com.google.android.material:material:1.9.0",
+            "android-constraintlayout"  : "androidx.constraintlayout:constraintlayout:2.1.4",
+            "android-coordinatorlayout" : "androidx.coordinatorlayout:coordinatorlayout:1.2.0",
             "android-cardview"          : "androidx.cardview:cardview:1.0.0",
             "android-flexbox"           : "com.google.android.flexbox:flexbox:3.0.0",
             //协程
-            "android-coroutines"        : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3",
+            "android-coroutines"        : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3",
             //ktx扩展
-            "core-ktx"                  : "androidx.core:core-ktx:1.5.0",
-            "android-viewmodel-ktx"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
-            "android-lifecycle-ktx"     : "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1",
+            "core-ktx"                  : "androidx.core:core-ktx:1.10.0",
+            "android-viewmodel-ktx"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2",
+            "android-lifecycle-ktx"     : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2",
             //room数据库
             "android-room"              : "androidx.room:room-runtime:${dependVersion.room_version}",
             "android-room-compiler"     : "androidx.room:room-compiler:${dependVersion.room_version}",// use kapt for Kotlin
@@ -47,13 +47,7 @@ ext {
             //workManager
             "android-work"              : "androidx.work:work-runtime:${dependVersion.work_version}",
             "android-work-ktx"          : "androidx.work:work-runtime-ktx:${dependVersion.work_version}",
-            //高德地图
-            "amap3d"                    : "com.amap.api:3dmap:7.2.0",
-            "amap-location"             : "com.amap.api:location:4.8.0",
-            "amap-search"               : "com.amap.api:search:7.6.0",
-            "amap-navi"                 : "com.amap.api:navi-3dmap:7.2.0_3dmap7.2.0",
-            "arcgis"                    : "com.esri.arcgisruntime:arcgis-android:100.15.3",
-//            "arcgis-tool"               : "com.esri.arcgisruntime:arcgis-android-toolkit:100.15.0",
+
             //弹窗选择器
             "dialogPicker"              : "com.github.github2136:DialogPicker:1.0.8",
             //图片选择器
@@ -64,42 +58,15 @@ ext {
             "glide"                     : "com.github.bumptech.glide:glide:${dependVersion.glide_version}",
             "glide-okhttp"              : "com.github.bumptech.glide:okhttp3-integration:${dependVersion.glide_version}",
             "glide-compiler"            : "com.github.bumptech.glide:compiler:${dependVersion.glide_version}",
-            //友盟基础库
-            "umeng-common"              : "com.umeng.umsdk:common:9.5.6",
-            "umeng-asms"                : "com.umeng.umsdk:asms:1.6.3",
-            //推送
-            "umeng-push"                : "com.umeng.umsdk:push:6.5.8",
-            //厂商通道
-            "umeng-xiaomi"              : "com.umeng.umsdk:xiaomi-umengaccs:1.3.2",
-            "umeng-xiaomi-push"         : "com.umeng.umsdk:xiaomi-push:5.1.2",
-            "umeng-huawei"              : "com.umeng.umsdk:huawei-umengaccs:1.4.1",
-            "umeng-huawei-push"         : "com.huawei.hms:push:6.10.0.300",
-//            "umeng-oppo"                : "com.umeng.umsdk:oppo-umengaccs:1.0.7-fix",
-//            "umeng-oppo-push"           : "com.umeng.umsdk:oppo-push:2.1.0",
-//            "umeng-vivo"                : "com.umeng.umsdk:vivo-umengaccs:1.1.6",
-//            "umeng-vivo-push"           : "com.umeng.umsdk:vivo-push:3.0.0.4",
-            // 错误分析升级为独立SDK，看crash数据请一定集成，可选
-            "umeng-apm"                 : "com.umeng.umsdk:apm:1.9.1",
+
             //日历控件
             "calendar-view"             : "com.haibin:calendarview:3.6.9",
             //侧边快速选择
             "sidebar"                   : "com.bigkoo:quicksidebar:1.0.3",
-            //视频播放
-            "GSYVideoPlayer"            : "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.7-release-jitpack",
-            "GSYVideoPlayer-exo"        : "com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer-exo2:v8.1.7-release-jitpack",
-            "GSYVideoPlayer-ijk"        : "com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-ex_so:v8.1.7-release-jitpack",
-            //萤石云
-            "ezuikit"                   : "io.github.ezviz-open:ezviz-sdk:5.1.3",
-            //声网视频
-            "agora-rtc"                 : "io.agora.rtc:full-sdk:3.6.2",
-            //声网云信令
-            "agora-rtm"                 : "com.github.agorabuilder:rtm-sdk:1.4.1",
             // 图表控件
             "MPAndroidChart"            : "com.github.PhilJay:MPAndroidChart:v3.1.0",
             //权限
             "Permissionx"               : "com.guolindev.permissionx:permissionx:1.6.0",
-            // 腾讯X5
-            "X5"                        : "com.tencent.tbs:tbssdk:44286",
             //测试代码
             "android-test"              : "androidx.test:runner:1.3.0-alpha02",
             "android-test-ext"          : "androidx.test.ext:junit:1.1.1",

@@ -4,6 +4,10 @@
 
     <data>
 
+        <import type="com.github2136.ledger.common.DBUtil" />
+
+        <import type="com.github2136.util.DateUtil" />
+
         <variable
             name="view"
             type="com.github2136.ledger.view.activity.record.record_add.RecordAddActivity" />
@@ -31,9 +35,66 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
+                <Spinner
+                    android:id="@+id/spLedger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
+                <Spinner
+                    android:id="@+id/spType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{view::onCheckedChanged}"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbDisburse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="支出" />
+
+                    <RadioButton
+                        android:id="@+id/rbIncome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="收入" />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{view::afterTextChanged}"
+                    android:hint="金额"
+                    android:inputType="numberDecimal"
+                    android:maxLength="12" />
+
+                <EditText
+                    android:id="@+id/etRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="备注"
+                    android:maxLength="300"
+                    android:maxLines="5"
+                    android:text="@={vm.recordLD.remark}" />
+
+                <Button
+                    android:id="@+id/btnDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{view::onClick}"
+                    android:text="@{DateUtil.date2str(vm.recordLD.date, DateUtil.DATE_PATTERN_YMD)}" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

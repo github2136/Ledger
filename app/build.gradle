@@ -72,6 +72,8 @@ dependencies {
     implementation lib["android-material"]
     implementation lib["android-swiperefreshlayout"]
     implementation lib["core-ktx"]
+    implementation lib["android-viewmodel-ktx"]
+    implementation lib["android-lifecycle-ktx"]
 
     implementation lib["android-lifecycle-ktx"]
 
