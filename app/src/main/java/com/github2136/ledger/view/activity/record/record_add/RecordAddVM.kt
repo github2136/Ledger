@@ -13,8 +13,8 @@ class RecordAddVM(app: Application) : AppBaseVM(app) {
     val ledgerLD = MutableLiveData<List<String>>()
     val incomeTypeLD = MutableLiveData<List<String>>()
     val disburseTypeLD = MutableLiveData<List<String>>()
-    val recordLD=MutableLiveData(Record())
-
+    val recordLD = MutableLiveData(Record())
+    val addLD = MutableLiveData<String>()
     fun getLedger() = launch {
         ledgerLD.value = recordRepository.getLedger()
     }
@@ -25,6 +25,13 @@ class RecordAddVM(app: Application) : AppBaseVM(app) {
     }
 
     fun postRecord() = launch {
-        recordRepository.postRecord(Record(0, "默认", "类型", Date(), 1.0))
+        recordLD.value?.apply {
+            when {
+                Amount == null -> toastLD.value = "请输入金额"
+                Amount!! <= 0.0 -> toastLD.value = "金额必须大于0.01"
+            }
+            recordRepository.postRecord(this)
+            addLD.value = ""
+        }
     }
 }

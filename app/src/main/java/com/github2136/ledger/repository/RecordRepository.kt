@@ -20,14 +20,14 @@ class RecordRepository(context: Context) : BaseRepository(context) {
     fun getIncomeType() = jsonUtil.fromJson<List<String>>(
         spUtil.getString(
             Constants.SP_INCOME_TYPE,
-            "[\"工资\",\"奖金补贴\",\"卖二手\",\"投资理财\",\"利息\",\"兼职\",\"其他\",\"人情社交\",\"报销\",\"生意\",\"生活费\",\"中奖\",\"转账\",\"保险理赔\"]"
+            "[\"工资\", \"兼职\", \"投资理财\", \"人情社交\", \"奖金补贴\", \"报销\", \"生意\", \"卖二手\", \"生活费\", \"中奖\", \"转账\", \"保险理赔\", \"其他\"]"
         )
     )
 
     fun getDisburseType() = jsonUtil.fromJson<List<String>>(
         spUtil.getString(
             Constants.SP_DISBURSE_TYPE,
-            "[\"交通\", \"爱车\", \"生活服务\", \"休闲娱乐\", \"餐饮\", \"其他\", \"穿搭美容\", \"买菜\", \"住房\", \"家具家电\", \"运动\", \"生活日用\", \"水果零食\", \"购物\", \"人情社交\", \"宠物\", \"学习\", \"转账\", \"烟酒\", \"医疗保险\", \"金融保险\", \"酒店旅游\"]"
+            "[\"餐饮\", \"休闲娱乐\", \"购物\", \"穿搭美容\", \"水果零食\", \"交通\", \"生活日用\", \"人情社交\", \"宠物\", \"养娃\", \"运动\", \"生活服务\", \"买菜\", \"住房\", \"爱车\", \"学习\", \"网络虚拟\", \"烟酒\", \"医疗保险\", \"金融保险\", \"家具家电\", \"酒店旅游\", \"转账\", \"公益\", \"其他\"]"
         )
     )
 
@@ -35,5 +35,10 @@ class RecordRepository(context: Context) : BaseRepository(context) {
     ///////////////////////////////////////////////////////////////////////////
     // sqlite
     ///////////////////////////////////////////////////////////////////////////
-    fun postRecord(record: Record) = recordDao.post(record)
+    fun postRecord(record: Record) {
+        recordDao.post(record)
+        getIncomeType()
+        record.Ledger
+        record.Type
+    }
 }

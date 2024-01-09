@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,9 +30,12 @@ class RecordListActivity : AppBaseLoadMoreActivity<RecordListVM, ActivityRecordL
         bind.title.ibLeft.isInvisible = true
         // 方案一：跳转到系统文件访问页面，手动赋予
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+
             val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
             intent.data = Uri.parse("package:" + this.packageName);
             startActivity(intent);
+            }
         } else {
             PermissionX.init(activity)
         }

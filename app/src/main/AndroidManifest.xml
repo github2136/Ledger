@@ -32,6 +32,17 @@
         <activity
             android:name=".view.activity.record.record_add.RecordAddActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.dialog.MediaDialog"
+            android:screenOrientation="portrait"
+            android:theme="@style/Dialog" />
+
+        <meta-data
+            android:name="com.github2136.ledger.common.ImageLoader"
+            android:value="picker_image_loader" />
+        <meta-data
+            android:name="util_project_path"
+            android:value="Ledger" />
     </application>
 
 </manifest>

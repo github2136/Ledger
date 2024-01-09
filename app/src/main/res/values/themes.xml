@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/secondaryColor</item>
         <item name="android:actionBarSize">56dp</item>
     </style>
+    <!--Dialog样式Activity-->
+    <style name="Dialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="windowNoTitle">true</item>　　　　　　　　
+    </style>
 </resources>

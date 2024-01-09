@@ -16,6 +16,7 @@ data class Record(
     @PrimaryKey(autoGenerate = true)
     var Id: Int = 0, //主键
     var Ledger: String = "", //账本
+    var Income: Boolean = false, //收入
     var Type: String = "", //类型
     var Date: Date = Date(), //日期
     var Amount: Double? = null, //金额
@@ -25,12 +26,20 @@ data class Record(
 ) : BaseObservable() {
     @Ignore
     constructor() : this(0)
+    // @Ignore
+    // var _amount: Double? = null
+    //     set(value) {
+    //         field = value
+    //         Amount = value
+    //         notifyPropertyChanged(BR._amount)
+    //     }
+    //     @Bindable get() = Amount
     @Ignore
-    var _amount: Double? = null
+    var _date: Date = Date()
         set(value) {
             field = value
-            Amount = value
-            notifyPropertyChanged(BR._amount)
+            Date = value
+            notifyPropertyChanged(BR._date)
         }
-        @Bindable get() = Amount
+        @Bindable get() = Date
 }

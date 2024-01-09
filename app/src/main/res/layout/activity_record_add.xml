@@ -94,7 +94,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{view::onClick}"
-                    android:text="@{DateUtil.date2str(vm.recordLD.date, DateUtil.DATE_PATTERN_YMD)}" />
+                    android:text="@{DateUtil.date2str(vm.recordLD._date, DateUtil.DATE_PATTERN_YMD)}" />
+
+                <LinearLayout
+                    android:id="@+id/llImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAddMedia"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="4dp"
+                        android:onClick="@{view::onClick}"
+                        android:text="添加图片" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
